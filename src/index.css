@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  :root {
+    --canvas-base: #F4F2FB;
+    --surface-1: #FFFFFF;
+    --surface-2: #EAE5F8;
+    --surface-low: #F0F3FF;
+    --hairline: rgba(229, 222, 255, 0.75);
+    --primary: #6D28D9;
+    --primary-hover: #5B21B6;
+    --primary-bright: #7C3AED;
+    --on-surface: #151C27;
+    --on-surface-muted: #6B7280;
+    --on-surface-variant: #4A4455;
+  }
+
+  html,
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--canvas-base);
+    color: var(--on-surface);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Taskora Violet-tinted Ambient Elevation */
+.elevation-1 {
+  box-shadow: 0 1px 3px 0 rgba(109, 40, 217, 0.04), 0 1px 2px -1px rgba(109, 40, 217, 0.02);
+}
+
+.elevation-2 {
+  box-shadow: 0 10px 25px -5px rgba(109, 40, 217, 0.07), 0 8px 10px -6px rgba(109, 40, 217, 0.04);
+}
+
+.elevation-3 {
+  box-shadow: 0 20px 40px -15px rgba(91, 33, 182, 0.14);
+}
+
+/* Linear-style Quick Find Focus Halo */
+.taskora-input {
+  background-color: #FFFFFF;
+  border: 1px solid #E5DEFF;
+  transition: border-color 150ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.taskora-input:focus,
+.taskora-input:focus-within {
+  outline: none;
+  border-color: #7C3AED;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+/* Subtle Lavender Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(123, 116, 134, 0.22);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(109, 40, 217, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

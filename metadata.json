@@ -1,0 +1,6 @@
+{
+  "name": "Taskora",
+  "description": "Focused task management and product workspace built with minimalist calm and precision.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
