@@ -1,5 +1,5 @@
 import React from 'react';
-import { Kanban, List, Menu, PanelRight, Plus, Search, X } from 'lucide-react';
+import { Database, Kanban, List, Menu, PanelRight, Plus, Search, X } from 'lucide-react';
 import { DisplayMode, Project, ViewId } from '../types';
 
 interface TopBarProps {
@@ -15,6 +15,8 @@ interface TopBarProps {
   onToggleInspector: () => void;
   hasSelectedTask: boolean;
   onOpenMobileMenu: () => void;
+  isSupabaseConnected?: boolean;
+  onOpenSupabaseModal?: () => void;
 }
 
 const VIEW_LABELS: Record<string, { section: string; title: string }> = {
@@ -38,6 +40,8 @@ export const TopBar: React.FC<TopBarProps> = ({
   onToggleInspector,
   hasSelectedTask,
   onOpenMobileMenu,
+  isSupabaseConnected = false,
+  onOpenSupabaseModal,
 }) => {
   const viewInfo = activeProject
     ? { section: 'Projects', title: activeProject.name }
@@ -78,8 +82,34 @@ export const TopBar: React.FC<TopBarProps> = ({
         </div>
       </div>
 
-      {/* Right Controls: Filter Input + Mode Switch + Primary CTA + Inspector Toggle */}
+      {/* Right Controls: Supabase Badge + Filter Input + Mode Switch + Primary CTA + Inspector Toggle */}
       <div className="flex items-center gap-2.5 shrink-0">
+        {/* Supabase Status Pill */}
+        <button
+          type="button"
+          onClick={onOpenSupabaseModal}
+          title={
+            isSupabaseConnected
+              ? 'Connected to Supabase. Click to manage settings or seed.'
+              : 'Supabase offline/not connected. Click to configure credentials.'
+          }
+          className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-[12px] font-medium transition-colors shadow-xs ${
+            isSupabaseConnected
+              ? 'border-emerald-200 bg-emerald-50 text-emerald-800 hover:bg-emerald-100'
+              : 'border-[#E5DEFF] bg-white text-[#6B7280] hover:bg-[#EDE9FE] hover:text-[#5300B7]'
+          }`}
+        >
+          <span
+            className={`h-2 w-2 rounded-full ${
+              isSupabaseConnected ? 'bg-emerald-500 animate-pulse' : 'bg-amber-400'
+            }`}
+          />
+          <Database className="h-3 w-3" />
+          <span className="hidden sm:inline">
+            {isSupabaseConnected ? 'Supabase' : 'Connect DB'}
+          </span>
+        </button>
+
         {/* Live Filter Input */}
         <div className="relative hidden sm:flex items-center">
           <Search className="pointer-events-none absolute left-2.5 h-3.5 w-3.5 text-[#9CA3AF]" />
